@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STUDENT REGISTRATION FORM</title>
+    
+
+</head>
+
+<body>
+
+    <H3>STUDENT REGISTRATION FORM</H3>
+    <form>
+
+
+
+        <div> <label for="">First Name</label>
+
+            <input type="text" placeholder="Enter your first name" required pattern="[a-zA-Z]{3,6}">
+        </div>
+
+        <div>
+            <label>Last name:</label>
+            <input type="text" placeholder="Enter your last name" required pattern="[a-zA-Z]{3,6}">
+
+        </div>
+
+
+        <div> <label>Email:</label>
+            <input type="email" placeholder="it should contain @.." required
+                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}">
+        </div>
+
+        <div>
+            <lable>Mobile:</lable>
+
+            <input type="tel" placeholder="only 10 digits are allowed" required pattern="[0-9]{10}" maxlength="10">
+
+        </div>
+
+        <div>
+            <label>Gender:</label>
+
+            <input type="radio" name="gender" value="male">Male
+            <input type="radio" name="gender" value="female">Female
+
+        </div>
+        <div>
+            <label>Date of birth:</label>
+            <input type="date">
+
+        </div>
+        <div>
+            <label>Address:</label>
+
+            <textarea name="address" id="" cols="30" rows="9" required></textarea>
+        </div>
+        <div>
+            <label>City:</label>
+
+            <input type="text">
+        </div>
+
+        <div>
+        <label>Area pin:</label>
+            <input type="number" required pattern="[0-9]{6}" maxlength="6">
+        </div>
+
+<div>
+        <label>State:</label>
+            <input type="text">
+        </div>
+
+<div>
+        <label>Qualification:</label>
+            <select>
+                <option hidden>Select Qualification</option>
+                <option>10th paas</option>
+                <option>12th paas</option>
+                <option>Graduate</option>
+                <option>Post Graduate</option>
+                <option>Doctorate</option>
+                <option>other</option>
+            </select>
+        </div>
+
+<div>
+        <label>Specialization:</label>
+        
+
+            <input type="checkbox">Computer Science</input></div>
+
+
+          <div>   <input type="checkbox">Information Technology</input></div>
+
+            <input type="checkbox">Computer Architecture</input>
+
+            <div><input type="checkbox">Tele communication</input>
+            </div>
+
+<div>
+            <label>Password:</label>
+            
+                <input type="password" required pattern="[0-9a-zA-Z]{8}">
+            </div>
+
+
+            <button>Registered</button>
+
+
+
+
+
+    </form>
+</body>
+
+</html>

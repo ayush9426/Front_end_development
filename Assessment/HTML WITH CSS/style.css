@@ -1,0 +1,36 @@
+h3{
+    text-align: center;
+    color: red;
+    text-decoration: underline;
+}
+
+
+#y{
+    background-color:lightgray ;
+}
+
+div{
+    margin-top: 15px;
+}
+form{
+    padding-left: 20px;
+    padding-top: 15px;
+}
+label{
+    display: inline-block;
+    width: 100px;
+}
+ul{
+    display: inline-block;
+    padding: 0;
+    list-style: none;
+    
+}
+button{
+    background-color: green;
+    color: white;
+    border: none;
+}
+.y{
+    vertical-align: top;
+}
