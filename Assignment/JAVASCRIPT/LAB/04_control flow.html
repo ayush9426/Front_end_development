@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LAB_4</title>
+    <style>
+        p {
+            background: rgb(143, 213, 237);
+            color: rgb(21, 4, 4);
+            height: 50px;
+            width: 100%;
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Enter a number (1-12) to get the month of the year</h2>
+    <input type="number" id="dayinp" min="1" max="12">
+    <button onclick="month()">click me</button>
+    <p id="output"></p>
+
+    <script>
+
+        document.write("Task 1<br>")
+
+        let x = 5
+        if (x >= 1) {
+            document.write("number is positive=>", x)
+        }
+        else if (x == 0) {
+            document.write("number is zero=>", x)
+        }
+        else if (x <= -1) {
+            document.write("number is negative=>", x)
+        }
+
+
+        function month() {
+            let input = parseInt(document.getElementById("dayinp").value)
+            let month;
+            switch (input) {
+                case 1:
+                    month = "january"
+                    break
+                case 2:
+                    month = "february"
+                    break
+                case 3:
+                    month = "march"
+                    break
+                case 4:
+                    month = "april"
+                    break
+                case 5:
+                    month = "may"
+                    break
+                case 6:
+                    month = "june"
+                    break
+                case 7:
+                    month = "july"
+                    break
+                case 8:
+                    month = "august"
+                    break
+                case 9:
+                    month = "september"
+                    break
+                case 10:
+                    month = "octomber"
+                    break
+                case 11:
+                    month = "november"
+                    break
+                case 12:
+                    month = "december"
+                    break
+
+                default:
+                    month = "Invalid input! please enter 1 to 12 numbers only."
+            }
+            document.getElementById("output").innerHTML = month
+        }
+    </script>
+</body>
+
+</html>
