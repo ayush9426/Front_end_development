@@ -3,9 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>LAB_12</title>
 </head>
 <body>
+    <script>
+
+        function divnum(x,y){
+            try{
+                if(y === 0){
+                    throw new Error("Division by zero is not allowed")
+                }
+                let result = x/y 
+                console.log(result)
+            }
+            catch(error){
+                console.error("Error message :",error.message)
+            }
+        }
+
+        divnum(20,0)
     
+
+    </script>
 </body>
 </html>
