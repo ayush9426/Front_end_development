@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>View Submissions</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th,
+    td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background: #f2f2f2;
+    }
+
+    input {
+      padding: 8px;
+      width: 300px;
+    }
+
+    .message {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2>All Submissions</h2>
+  <input type="text" id="search" placeholder="Search by Title or Status">
+
+  <div class="message" id="message"></div>
+  <table id="taskTable">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Due Date</th>
+        <th>Priority</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <p><a href="index.html">Back to Create Task</a></p>
+
+  <script type="module">
+    import { getItem, setItem } from "./task.js";
+
+    class SubmissionViewer {
+      constructor() {
+        this.tasks = getItem("tasks") || [];
+        this.tableBody = document.querySelector("#taskTable tbody");
+        this.message = document.getElementById("message");
+        document.getElementById("search").addEventListener("input", e => this.search(e.target.value));
+        this.render(this.tasks);
+      }
+
+      render(data) {
+        this.tableBody.innerHTML = "";
+        if (data.length === 0) {
+          this.message.textContent = "No data found";
+          return;
+        }
+        this.message.textContent = "";
+        data.forEach(t => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${t.title}</td>
+            <td>${t.desc}</td>
+            <td>${t.due}</td>
+            <td>${t.priority}</td>
+            <td>${t.status}</td>
+            <td><button onclick="viewer.deleteTask(${t.id})">Delete</button></td>
+          `;
+          this.tableBody.appendChild(row);
+        });
+      }
+
+      search(query) {
+        const q = query.toLowerCase();
+        const filtered = this.tasks.filter(t =>
+          t.title.toLowerCase().includes(q) || t.status.toLowerCase().includes(q)
+        );
+        this.render(filtered);
+      }
+
+      deleteTask(id) {
+        this.tasks = this.tasks.filter(t => t.id !== id);
+        setItem("tasks", this.tasks);
+        this.render(this.tasks);
+        this.message.textContent = "Task deleted!";
+      }
+    }
+
+    window.viewer = new SubmissionViewer();
+  </script>
+</body>
+
+</html>

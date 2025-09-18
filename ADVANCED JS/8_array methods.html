@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        //1) concat method
+        let arr = [1,2,3,4,5,]
+        let arr1 = [6,7,8,9,10]
+
+        let array = arr.concat(arr1)
+        console.log(array)
+        // console.log(arr.concat(arr1))
+
+
+
+        //2) push after add
+        arr1.push("ayush")
+        console.log(arr1)
+
+    
+        //3) pop after delete
+        arr.pop()
+        console.log(arr)
+
+
+
+        // 4) shift before remove/it remove from strting
+        arr1.shift()
+        console.log(arr1)
+
+        // 5) unshift before add/it add in starting
+        arr.unshift(10,"ak")
+        console.log(arr)
+
+
+
+
+        //6) foreach method it is a loop 
+        arr.forEach((value)=>{
+            console.log(value)
+        })
+
+        
+        // 7)filter method
+        const words = ["spray", "elite", "exuberant", "destruction", "present"];
+        console.log(words)
+        const data1 = words.filter((data) => data.length > 6)   //this is a method which give name according speell letter length
+        console.log(data1)
+
+        // 8) include method
+        const array1 = [1, 2, 3, 4];
+        console.log(array1.includes(8))//it gives true falses according to the value is presnt or not 
+        console.log(array1.includes(1))// same as above
+
+        // 9) reverse method
+        console.log(array1.reverse())// it reverse 
+
+        // slice method
+        const animals = ["ant", "bison", "camel", "duck", "elephant"];
+        // console.log(animals)
+
+        console.log(animals.slice(1,5))
+        console.log(animals.slice(3))
+    </script>
+</body>
+</html>

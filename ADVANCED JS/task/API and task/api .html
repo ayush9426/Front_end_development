@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border="5" cellpadding="10">
+        <thead>
+            <tr>
+                <th>NAME</th>
+                <th>EMAIL</th>
+                <th>PASSWORD</th>
+                <th>PHONE</th>
+                <th>ADDRESS</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+        </tbody>
+
+    </table>
+    
+
+    <script>
+
+        fetch("https://fakestoreapi.com/users",{
+            method:"GET"
+        })
+        .then((res)=>{
+            return res.json()
+        })
+        .then((data)=>{
+            console.log(data)
+            // loop for body write 
+            data.forEach((user,index)=>{
+                console.log(user.id)
+
+                // tag,id,class for direct select use querry selector
+                let tbody = document.querySelector("tbody")
+                // for tbody row use insertrow
+                let row = tbody.insertRow();
+
+                // for trow column use insertcell(number according to the index )
+                let namecell = row.insertCell(0)
+                let emailcell = row.insertCell(1)
+                let passwordcell = row.insertCell(2)
+                let phonecell = row.insertCell(3)
+                let citycell = row.insertCell(4)
+
+
+                // for text use text content for body write
+                namecell.textContent = user.name.firstname
+                emailcell.textContent = user.email
+                passwordcell.textContent = user.password
+                phonecell.textContent = user.phone
+                citycell.textContent = user.address.city
+
+            });
+
+        })
+
+    </script>
+
+</body>
+</html>

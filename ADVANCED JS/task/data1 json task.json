@@ -1,0 +1,38 @@
+{
+    "user":[
+        {
+            "id":"1",
+            "name":"het",
+            "course":"frontend"
+
+        },
+        {
+            "id":"2",
+            "name":"neer",
+            "course":"frontend"
+
+        },
+        {
+            "id":"3",
+            "name":"swet",
+            "course":"backend"
+        }
+
+    ],
+
+    "admin":[
+        {
+            "id":"1",
+            "name":"admin",
+            "course":"frontend"
+        },
+        {
+            "id":"2",
+            "name":"subadmin",
+            "course":"backend"
+        }
+
+
+
+    ]
+}

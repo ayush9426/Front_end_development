@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORM TASK</title>
+</head>
+
+<body>
+    <table align="center">
+        <h1 style="text-align: center;">form data</h1>
+        <form action="" id="form">
+            <tr>
+                <td>Firstname</td>
+                <td> <input type="text" id="fn" ></td>
+                <td><span id="fnerr"></span></td>
+            </tr>
+
+            <tr>
+                <td>Lastname:</td>
+                <td> <input type="text" id="ln"></td>
+                <td><span id="lnerr"></span></td>
+            </tr>
+
+
+            <tr>
+                <td>Phone:</td>
+                <td> <input type="tel" id="mb" maxlength="10"></td>
+                <td><span id="mberr"></span></td>
+            </tr>
+
+
+            <tr>
+                <td>Email:</td>
+                <td> <input type="email" id="em"></td>
+                <td><span id="emerr"></span></td>
+            </tr>
+
+
+            <tr>
+                <td>Password:</td>
+                <td> <input type="password" id="psw"> </td>
+                <td><span id="pswerr"></span></td>
+            </tr>
+
+
+            <tr>
+                <td>Confirm password:</td>
+                <td> <input type="password" id="cpsw"></td>
+            </tr>
+
+
+            <tr>
+                <td><input type="submit"></td>
+            </tr>
+        </form>
+    </table>
+
+    <script>
+        document.getElementById("form").onsubmit = function validation(event) {
+            event.preventDefault()
+            // get values and errors
+
+            // values
+            let fn = document.getElementById("fn").value;
+            let ln = document.getElementById("ln").value;
+            let mb = document.getElementById("mb").value;
+            let em = document.getElementById("em").value;
+            let psw = document.getElementById("psw").value;
+            let cpsw = document.getElementById("cpsw").value;
+
+            // errors
+            let fnerr = document.getElementById("fnerr");
+            let lnerr = document.getElementById("lnerr");
+            let mberr = document.getElementById("mberr");
+            let emerr = document.getElementById("emerr");
+            let pswerr = document.getElementById("pswerr");
+
+
+            //  clear previous errors
+            fnerr.innerHTML = "";
+            lnerr.innerHTML = "";
+            mberr.innerHTML = "";
+            emerr.innerHTML = "";
+            pswerr.innerHTML = "";
+
+
+            // patterns
+            let namePattern = /^[A-Za-z\s]+$/;
+            let mobilePattern = /^[0-9]{10}$/;
+            let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            let passwordpattern =/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=!]).{8,12}$/
+
+
+            let hasError = false;
+
+
+            // name
+
+            if (fn == "") {
+                fnerr.innerHTML = "Enter your First Name"
+                fnerr.style.color = "red"
+                hasError = true
+            } else if (!namePattern.test(fn)) {
+                fnerr.innerHTML = "Numbers are not allowed"
+                fnerr.style.color = "red"
+                hasError = true
+            }
+
+            //  last name 
+            if (ln == "") {
+                lnerr.innerHTML = "Enter your Last Name"
+                lnerr.style.color = "red"
+                hasError = true
+            } else if (!namePattern.test(ln)) {
+                lnerr.innerHTML = "Numbers are not allowed"
+                lnerr.style.color = "red"
+                hasError = true
+            }
+
+            // mobile
+            if (mb == "") {
+                mberr.innerHTML = "Enter your Mobile Number"
+                mberr.style.color = "red"
+                hasError = true
+            } else if (!mobilePattern.test(mb)) {
+                mberr.innerHTML = "Enter a valid Mobile Number"
+                mberr.style.color = "red"
+                hasError = true
+            }
+            
+            // email
+            if(em ==""){
+                emerr.innerHTML = "Enter your Email"
+                emerr.style.color = "red"
+                hasError = true
+            }else if(!emailPattern.test(em)){
+                emerr.innerHTML = "Enter a valid Email"
+                emerr.style.color = "red"
+                hasError = true
+            }
+
+            // password
+            if (psw ==""){
+                pswerr.innerHTML = "Enter your Password"
+                pswerr.style.color = "red"
+                hasError = true
+            }else if(!passwordpattern.test(psw)){
+                pswerr.innerHTML = "  atleast one capital,one small,one number,one special character and 8-12 characters is neccesory"
+                pswerr.style.color = "red"
+                hasError = true
+            }
+
+            // confirm-pswd
+            if(psw !== cpsw){
+                pswerr.innerHTML = "password does not matched" 
+                  pswerr.style.color = "red"
+                hasError = true
+            }
+
+             if (!hasError) {
+                alert("form submitted successfully..")
+            }
+
+        }
+
+        </script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

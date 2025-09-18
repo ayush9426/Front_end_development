@@ -1,0 +1,30 @@
+@media only screen and (max-width:1200px) {}
+
+@media only screen and (max-width:992px) {}
+
+@media only screen and (max-width:768px) {
+    .search-box {
+        display: none;
+    }
+
+    .nav2-ul {
+        display: none;
+    }
+
+    .back-h1 {
+        /* display: none; */
+        opacity: 10;
+    }
+
+    .front-h1 {
+        display: none;
+    }
+    #sec-1 .row{
+        /* display: block; */
+        flex-direction: column;
+    }
+
+    #sec-1 .row .col{
+        width: 100%;
+    }
+}

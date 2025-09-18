@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Saraswati Steel Furniture</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0f172a;          /* slate-900 */
+      --panel:#111827;        /* gray-900 */
+      --muted:#94a3b8;        /* slate-400 */
+      --text:#e5e7eb;         /* gray-200 */
+      --brand:#22d3ee;        /* cyan-400 */
+      --brand-2:#a78bfa;      /* violet-400 */
+      --accent:#34d399;       /* emerald-400 */
+      --warn:#f59e0b;         /* amber-500 */
+      --ring: rgba(34, 211, 238, .25);
+      --card:#0b1024;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Poppins, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text); background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(167,139,250,.15), transparent 50%),
+        radial-gradient(900px 500px at 90% 10%, rgba(34,211,238,.12), transparent 40%),
+        linear-gradient(180deg, #0b1022, #050816 30%, #050611);
+      scroll-behavior:smooth;
+    }
+
+    /* UTIL */
+    .container{width:min(1200px, 92%); margin-inline:auto}
+    .btn{display:inline-flex; align-items:center; gap:.55rem; padding:.8rem 1.1rem; border-radius:16px; border:1px solid rgba(255,255,255,.08); background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); color:var(--text); text-decoration:none; font-weight:600; letter-spacing:.2px; position:relative; overflow:hidden}
+    .btn:after{content:""; position:absolute; inset:0; background:radial-gradient(200px 100px at var(--x,50%) var(--y,50%), rgba(34,211,238,.18), transparent 40%); opacity:0; transition:opacity .25s}
+    .btn:hover:after{opacity:1}
+    .btn.primary{border-color:rgba(34,211,238,.5); box-shadow:0 0 0 6px var(--ring)}
+    .chip{padding:.45rem .8rem; border-radius:999px; border:1px solid rgba(255,255,255,.08); color:var(--muted); font-size:.88rem}
+    .grid{display:grid; gap:1.2rem}
+
+    /* NAV */
+    header{position:sticky; top:0; z-index:50; backdrop-filter:saturate(120%) blur(12px); background:linear-gradient(180deg, rgba(5,8,22,.9), rgba(5,8,22,.55)); border-bottom:1px solid rgba(255,255,255,.06)}
+    nav.container{display:flex; align-items:center; justify-content:space-between; padding: .6rem 0}
+    .brand{display:flex; align-items:center; gap:.85rem; text-decoration:none; color:var(--text)}
+    .brand span{font-family:Rajdhani, sans-serif; font-weight:700; font-size:1.35rem; letter-spacing:.6px}
+    .navlinks{display:flex; gap:.6rem; align-items:center}
+    .navlinks a{color:var(--muted); text-decoration:none; padding:.6rem .8rem; border-radius:12px}
+    .navlinks a:hover{color:var(--text); background:rgba(255,255,255,.05)}
+
+    /* LOGO */
+    .logo{width:40px; height:40px}
+    .logo svg{width:100%; height:100%}
+
+    /* HERO */
+    .hero{padding: 72px 0 40px}
+    .hero .wrap{display:grid; grid-template-columns:1.1fr .9fr; gap:2rem; align-items:center}
+    .hero h1{font-size:clamp(1.9rem, 2.6vw + 1.1rem, 3.2rem); line-height:1.1; margin:.2rem 0 1rem}
+    .gradient{background:linear-gradient(135deg, var(--brand), var(--brand-2)); -webkit-background-clip:text; background-clip:text; color:transparent}
+    .hero p{color:var(--muted); font-size:1.05rem}
+    .hero .panel{background: radial-gradient(800px 300px at 70% 0%, rgba(167,139,250,.12), transparent 40%), linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); padding:1rem; border:1px solid rgba(255,255,255,.06); border-radius:22px}
+    .hero .panel img{width:100%; height:380px; object-fit:cover; border-radius:16px}
+
+    /* BADGES */
+    .badges{display:flex; flex-wrap:wrap; gap:.6rem; margin:1rem 0 1.4rem}
+
+    /* SECTIONS */
+    section{padding: 56px 0}
+    section h2{font-size:1.6rem; margin:0 0 .6rem}
+    section p.lead{color:var(--muted)}
+
+    /* PRODUCTS */
+    .products{grid-template-columns: repeat(auto-fit, minmax(220px, 1fr))}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.01)); border:1px solid rgba(255,255,255,.06); border-radius:20px; overflow:hidden; position:relative}
+    .card img{width:100%; height:180px; object-fit:cover; display:block; filter:saturate(1.05)}
+    .card .content{padding: .9rem}
+    .card h3{margin:.1rem 0 .2rem; font-size:1.05rem}
+    .card p{color:var(--muted); font-size:.92rem; min-height:2.6em}
+    .card .actions{display:flex; justify-content:space-between; align-items:center; margin-top:.6rem}
+    .price{font-weight:700; color:var(--accent)}
+    .like{background:none; border:none; color:var(--muted); cursor:pointer; font-size:1.1rem}
+    .card:hover{transform:translateY(-4px); transition:transform .25s ease}
+
+    /* GALLERY */
+    .gallery{grid-template-columns: repeat(auto-fit, minmax(220px, 1fr))}
+    .thumb{border-radius:16px; overflow:hidden; border:1px solid rgba(255,255,255,.06); cursor:pointer}
+    .thumb img{width:100%; height:200px; object-fit:cover; display:block}
+
+    /* MODAL */
+    .modal{position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(3,6,20,.75); z-index:60}
+    .modal.open{display:flex}
+    .modal .box{width:min(1000px, 92%); background:var(--panel); border:1px solid rgba(255,255,255,.08); border-radius:22px; overflow:hidden}
+    .modal header{position:unset; background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.01)); border-bottom:1px solid rgba(255,255,255,.06)}
+    .modal .body{padding:1rem}
+    .modal .body img{width:100%; height:min(68vh, 560px); object-fit:cover; border-radius:14px}
+
+    /* ABOUT */
+    .about{display:grid; grid-template-columns: .9fr 1.1fr; gap:1.4rem; align-items:center}
+    .about .feature{display:flex; gap:.8rem; align-items:flex-start; background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); padding:.8rem 1rem; border-radius:16px; border:1px solid rgba(255,255,255,.06)}
+
+    /* CONTACT */
+    .contact{display:grid; grid-template-columns:1.1fr .9fr; gap:1.4rem}
+    form{display:grid; gap:.8rem}
+    input, textarea{width:100%; padding:.9rem 1rem; border-radius:14px; border:1px solid rgba(255,255,255,.12); background:#0b0f20; color:var(--text)}
+    textarea{min-height:120px}
+
+    footer{padding:30px 0; border-top:1px solid rgba(255,255,255,.06); color:var(--muted)}
+
+    /* RESPONSIVE */
+    @media (max-width: 900px){
+      .hero .wrap{grid-template-columns:1fr;}
+      .about, .contact{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <header>
+    <nav class="container">
+      <a href="#home" class="brand" aria-label="Saraswati Steel Furniture Home">
+        <div class="logo" aria-hidden="true">
+          <!-- Minimal geometric S logo -->
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+                <stop stop-color="#22d3ee"/>
+                <stop offset="1" stop-color="#a78bfa"/>
+              </linearGradient>
+            </defs>
+            <rect x="6" y="6" width="88" height="88" rx="20" fill="#0b1024" stroke="url(#g1)" stroke-width="4"/>
+            <path d="M72 30H38a12 12 0 0 0 0 24h24a12 12 0 0 1 0 24H28" stroke="url(#g1)" stroke-width="10" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span>Saraswati Steel Furniture</span>
+      </a>
+      <div class="navlinks">
+        <a href="#about">About</a>
+        <a href="#products">Products</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+        <a class="btn primary" href="https://wa.me/919999999999?text=Hi%20Saraswati%20Steel%20Furniture" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="container wrap">
+      <div>
+        <div class="badges">
+          <span class="chip">Premium 304 Stainless Steel</span>
+          <span class="chip">Handcrafted Jhulas</span>
+          <span class="chip">Custom Designs</span>
+        </div>
+        <h1>
+          Elevate your space with <span class="gradient">stainless steel elegance</span> — built to last, designed to impress.
+        </h1>
+        <p>
+          We craft durable, modern furniture, swing <em>jhulas</em>, railings, tables, and more — with precision welding and mirror/brushed finishes. Explore our best‑sellers below and tap to quick‑view.
+        </p>
+        <div style="display:flex; gap:.8rem; margin-top:1.2rem">
+          <a href="#products" class="btn primary">Browse Products</a>
+          <a href="#about" class="btn">Why Stainless Steel?</a>
+        </div>
+      </div>
+      <div class="panel">
+        <img alt="Modern stainless steel living room set" src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1600&auto=format&fit=crop" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <h2>About Saraswati Steel Furniture</h2>
+      <p class="lead">We are a local workshop delivering robust, low‑maintenance stainless steel furniture with refined finishing. Perfect for homes, offices, and showrooms.</p>
+      <div class="about" style="margin-top:1rem">
+        <div class="grid">
+          <div class="feature">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="#22d3ee" stroke-width="2" stroke-linecap="round"/></svg>
+            <div>
+              <strong>Rust‑resistant 304/202 SS</strong>
+              <div class="muted">High durability for kitchens, balconies & outdoors.</div>
+            </div>
+          </div>
+          <div class="feature">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v18M3 12h18" stroke="#a78bfa" stroke-width="2" stroke-linecap="round"/></svg>
+            <div>
+              <strong>Custom sizes & finishes</strong>
+              <div class="muted">Mirror, matte, brushed — tailored to your space.</div>
+            </div>
+          </div>
+          <div class="feature">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 7h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z" stroke="#34d399" stroke-width="2"/><path d="M3 7l9 6 9-6" stroke="#34d399" stroke-width="2"/></svg>
+            <div>
+              <strong>Quick delivery & install</strong>
+              <div class="muted">On‑site fitting with clean finishing and warranty.</div>
+            </div>
+          </div>
+        </div>
+        <img style="width:100%; border-radius:18px; border:1px solid rgba(255,255,255,.06)" alt="Workshop with stainless steel frames" src="https://images.unsplash.com/photo-1523419409543-4886d1155d4f?q=80&w=1600&auto=format&fit=crop"/>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section id="products">
+    <div class="container">
+      <h2>Featured Products</h2>
+      <p class="lead">Tap any card to quick‑view images and details. Use the enquiry button to contact us for pricing and customization.</p>
+      <div class="grid products" style="margin-top:1rem">
+        <!-- Product 1: SS Jhula -->
+        <article class="card" data-gallery='[{"src":"https://images.unsplash.com/photo-1605296867304-46d5465a13f1?q=80&w=1400&auto=format&fit=crop","caption":"Stainless Steel Jhula — cushioned seat"}]'>
+          <img src="https://images.unsplash.com/photo-1605296867304-46d5465a13f1?q=80&w=1400&auto=format&fit=crop" alt="Stainless steel jhula"/>
+          <div class="content">
+            <h3>Stainless Steel Jhula</h3>
+            <p>Elegant swing with heavy‑duty chains and plush cushions for living rooms & balconies.</p>
+            <div class="actions">
+              <span class="price">On enquiry</span>
+              <div>
+                <button class="like" title="Add to wishlist">❤</button>
+                <a class="btn" href="#" data-enquiry="Stainless Steel Jhula">Enquire</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Product 2: Dining Set -->
+        <article class="card" data-gallery='[{"src":"https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=1400&auto=format&fit=crop","caption":"6‑Seater SS Dining with tempered glass top"}]'>
+          <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=1400&auto=format&fit=crop" alt="Stainless steel dining table set"/>
+          <div class="content">
+            <h3>SS Dining Table Set</h3>
+            <p>6‑seater frame in SS with tempered glass top and upholstered chairs.</p>
+            <div class="actions">
+              <span class="price">On enquiry</span>
+              <div>
+                <button class="like" title="Add to wishlist">❤</button>
+                <a class="btn" href="#" data-enquiry="SS Dining Table Set">Enquire</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Product 3: Modular Kitchen -->
+        <article class="card" data-gallery='[{"src":"https://images.unsplash.com/photo-1505691723518-36a5ac3b2d95?q=80&w=1400&auto=format&fit=crop","caption":"SS Modular Kitchen — anti‑rust & hygienic"}]'>
+          <img src="https://images.unsplash.com/photo-1505691723518-36a5ac3b2d95?q=80&w=1400&auto=format&fit=crop" alt="Stainless steel kitchen"/>
+          <div class="content">
+            <h3>SS Modular Kitchen</h3>
+            <p>Moisture‑proof, rust‑free cabinets for a lifetime kitchen with sleek look.</p>
+            <div class="actions">
+              <span class="price">Custom</span>
+              <div>
+                <button class="like" title="Add to wishlist">❤</button>
+                <a class="btn" href="#" data-enquiry="SS Modular Kitchen">Enquire</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Product 4: Railings -->
+        <article class="card" data-gallery='[{"src":"https://images.unsplash.com/photo-1544989164-31dc3c645987?q=80&w=1400&auto=format&fit=crop","caption":"Balcony railings with glass inserts"}]'>
+          <img src="https://images.unsplash.com/photo-1544989164-31dc3c645987?q=80&w=1400&auto=format&fit=crop" alt="Stainless steel railings"/>
+          <div class="content">
+            <h3>SS Railings</h3>
+            <p>Balcony & staircase railings with glass/wood accents for modern homes.</p>
+            <div class="actions">
+              <span class="price">Custom</span>
+              <div>
+                <button class="like" title="Add to wishlist">❤</button>
+                <a class="btn" href="#" data-enquiry="SS Railings">Enquire</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Product 5: SS Chairs -->
+        <article class="card" data-gallery='[{"src":"https://images.unsplash.com/photo-1549490316-686f9c0f4e8f?q=80&w=1400&auto=format&fit=crop","caption":"Stainless steel café chairs"}]'>
+          <img src="https://images.unsplash.com/photo-1549490316-686f9c0f4e8f?q=80&w=1400&auto=format&fit=crop" alt="Stainless steel chair"/>
+          <div class="content">
+            <h3>SS Chairs</h3>
+            <p>Comfortable & sturdy seating for cafés, offices, and homes.</p>
+            <div class="actions">
+              <span class="price">On enquiry</span>
+              <div>
+                <button class="like" title="Add to wishlist">❤</button>
+                <a class="btn" href="#" data-enquiry="SS Chairs">Enquire</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Product 6: SS Tables -->
+        <article class="card" data-gallery='[{"src":"https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1400&auto=format&fit=crop","caption":"Side & center tables in SS"}]'>
+          <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1400&auto=format&fit=crop" alt="Stainless steel table"/>
+          <div class="content">
+            <h3>SS Tables</h3>
+            <p>Side, center & work tables with durable tops in glass or stone.</p>
+            <div class="actions">
+              <span class="price">On enquiry</span>
+              <div>
+                <button class="like" title="Add to wishlist">❤</button>
+                <a class="btn" href="#" data-enquiry="SS Tables">Enquire</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery">
+    <div class="container">
+      <h2>Gallery</h2>
+      <p class="lead">A glimpse of our recent work — click any photo to open lightbox.</p>
+      <div class="grid gallery" style="margin-top:1rem">
+        <div class="thumb" data-src="https://images.unsplash.com/photo-1501045661006-fcebe0257c3f?q=80&w=1600&auto=format&fit=crop"><img alt="Living room set" src="https://images.unsplash.com/photo-1501045661006-fcebe0257c3f?q=80&w=1000&auto=format&fit=crop"/></div>
+        <div class="thumb" data-src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1600&auto=format&fit=crop"><img alt="Table closeup" src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1000&auto=format&fit=crop"/></div>
+        <div class="thumb" data-src="https://images.unsplash.com/photo-1567016525342-43f1823db36d?q=80&w=1600&auto=format&fit=crop"><img alt="Outdoor jhula" src="https://images.unsplash.com/photo-1567016525342-43f1823db36d?q=80&w=1000&auto=format&fit=crop"/></div>
+        <div class="thumb" data-src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=1600&auto=format&fit=crop"><img alt="Kitchen steel" src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=1000&auto=format&fit=crop"/></div>
+        <div class="thumb" data-src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=1600&auto=format&fit=crop"><img alt="Dining set" src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=1000&auto=format&fit=crop"/></div>
+        <div class="thumb" data-src="https://images.unsplash.com/photo-1544989164-31dc3c645987?q=80&w=1600&auto=format&fit=crop"><img alt="Balcony railings" src="https://images.unsplash.com/photo-1544989164-31dc3c645987?q=80&w=1000&auto=format&fit=crop"/></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <h2>Contact</h2>
+      <p class="lead">Have a design in mind? Send us a message — we’ll get back within 24 hours.</p>
+      <div class="contact" style="margin-top:1rem">
+        <form onsubmit="event.preventDefault(); sendEnquiry(this)">
+          <div class="grid" style="grid-template-columns:1fr 1fr">
+            <input required name="name" placeholder="Your name" />
+            <input required name="phone" placeholder="Phone / WhatsApp" />
+          </div>
+          <input name="subject" placeholder="Subject (e.g., SS Jhula customization)" />
+          <textarea required name="message" placeholder="Tell us what you need…"></textarea>
+          <div style="display:flex; gap:.8rem; align-items:center">
+            <button class="btn primary" type="submit">Send Enquiry</button>
+            <a class="btn" href="tel:+91-99999-99999">Call Now</a>
+          </div>
+          <small style="color:var(--muted)">Address: Near Market, Your City — Open Mon–Sat, 10am–8pm</small>
+        </form>
+        <div class="panel" style="border-radius:18px; border:1px solid rgba(255,255,255,.08); padding:.6rem; background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01))">
+          <iframe title="Map" style="width:100%; height:330px; border:0; border-radius:14px" loading="lazy" allowfullscreen src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15000.000000000002!2d72.571!3d23.0225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sSaraswati%20Steel%20Furniture!5e0!3m2!1sen!2sin!4v1691520000000"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container" style="display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap">
+      <div>© <span id="year"></span> Saraswati Steel Furniture • Crafted with care</div>
+      <div style="display:flex; gap:.5rem">
+        <a class="chip" href="#products">Catalogue</a>
+        <a class="chip" href="#contact">Get a Quote</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX & ENQUIRY MODAL -->
+  <div class="modal" id="lightbox" aria-hidden="true" role="dialog">
+    <div class="box">
+      <header class="container" style="display:flex; align-items:center; justify-content:space-between; padding:.8rem 1rem">
+        <strong>Quick View</strong>
+        <button class="btn" onclick="closeLightbox()">Close</button>
+      </header>
+      <div class="body container">
+        <img id="lightbox-img" alt="Preview" src=""/>
+        <p id="lightbox-cap" style="color:var(--muted); margin-top:.6rem"></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Button hover ripple position
+    document.addEventListener('pointermove', e => {
+      if(!e.target.classList?.contains('btn')) return;
+      e.target.style.setProperty('--x', e.offsetX + 'px');
+      e.target.style.setProperty('--y', e.offsetY + 'px');
+    });
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Lightbox for gallery thumbs
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightbox-img');
+    const lbCap = document.getElementById('lightbox-cap');
+
+    function openLightbox(src, caption=''){
+      lb.classList.add('open');
+      lbImg.src = src; lbCap.textContent = caption || '';
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox(){
+      lb.classList.remove('open'); lbImg.src = ''; lbCap.textContent = '';
+      document.body.style.overflow = '';
+    }
+    lb.addEventListener('click', (e)=>{ if(e.target===lb) closeLightbox(); });
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeLightbox(); });
+
+    // Product cards: quick view from data-gallery
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('click', (e)=>{
+        const a = e.target.closest('a');
+        const btn = e.target.closest('.btn');
+        if(a && a.dataset.enquiry) return; // let enquiry button work
+        const like = e.target.closest('.like');
+        if(like){ like.classList.toggle('active'); like.textContent = like.classList.contains('active') ? '❤︎' : '❤'; return; }
+        const gallery = JSON.parse(card.dataset.gallery || '[]');
+        if(gallery[0]) openLightbox(gallery[0].src, gallery[0].caption);
+      })
+    });
+
+    // Gallery thumbs
+    document.querySelectorAll('.thumb').forEach(el => el.addEventListener('click', ()=> openLightbox(el.dataset.src)));
+
+    // Enquiry button -> prefill WhatsApp
+    document.querySelectorAll('[data-enquiry]').forEach(el => {
+      el.addEventListener('click', (e)=>{
+        e.preventDefault();
+        const product = el.dataset.enquiry;
+        const text = encodeURIComponent(`Hello, I'm interested in: ${product}. Please share details and pricing.`);
+        window.open(`https://wa.me/919999999999?text=${text}`, '_blank');
+      });
+    });
+
+    // Contact form (demo only)
+    function sendEnquiry(form){
+      const data = Object.fromEntries(new FormData(form).entries());
+      const msg = `Thanks, ${data.name}! We will contact you at ${data.phone}.`;
+      alert(msg);
+      form.reset();
+    }
+    window.sendEnquiry = sendEnquiry;
+  </script>
+</body>
+</html>

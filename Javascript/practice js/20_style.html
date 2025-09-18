@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* h1{
+            font-size: ;
+        } */
+    </style>
+</head>
+
+<body>
+    <!-- <h1 id="h">Hello Javascript</h1> -->
+    <p id="p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo, quam.</p>
+
+    <button onclick="data()">style use</button>
+
+    <script>
+        // let h1_tag = document.getElementById("h");
+
+        // function adddata() {
+        //     console.log(h1_tag)
+        //     h1_tag.innerText = "Hello css";
+        //     // javascript color,effet
+        //     h1_tag.style.color = "red";
+        //     h1_tag.style.background = "blue";
+        //     h1_tag.style.fontSize = "50px"
+        // }
+
+        let p_tag = document.getElementById("p")
+
+        function data(){
+            console.log(p_tag)
+            p_tag.innerHTML = "hii css"
+            p_tag.style.background ="blue"
+            p_tag.style.color ="red"
+            p_tag.style.fontSize ="50px"
+            p_tag.style.padding ="50px"
+        }
+    </script>
+
+</body>
+
+</html>

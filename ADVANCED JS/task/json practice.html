@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+    <script>
+        // json to object
+
+        // json string
+        let json = `[
+            {
+                "id" : 1,
+                "name" : "swet",
+                "course" : "Front-end",
+                "email": "swet12@gmail"
+            },
+            {
+                "id" : 2,
+                "name" : "neer",
+                "course" : "Back-end",
+                "email": "neer23@gmail"
+            },
+                {
+                "id" : 3,
+                "name" : "yash",
+                "course" : "full-stack",
+                "email": "yash67@gmail"
+            },
+                {
+                "id" : 4,
+                "name" : "jay",
+                "course" : "mern-stack",
+                "email": "jay99@gmail"
+            },
+            {
+                "id" : 5,
+                "name" : "neerav",
+                "course" : "DS",
+                "email": "neerav66@gmail"
+            },
+             {
+                "id" : 6,
+                "name" : "sanjay",
+                "course" : "DA",
+                "email": "sanjay6@gmail"
+            },
+             {
+                "id" : 7,
+                "name" : "man",
+                "course" : "DS",
+                "email": "man90@gmail"
+            },
+            {
+                "id" : 8,
+                "name" : "smit",
+                "course" : "DS",
+                "email": "smit55@gmail"
+            },
+            {
+                "id" : 9,
+                "name" : "vansh",
+                "course" : "AI-ML",
+                "email": "vansh77@gmail"
+            },
+                {
+                "id" : 10,
+                "name" : "devansh",
+                "course" : "DS", 
+                "email": "devansh55@gmail"
+            }    
+        ]`
+
+        // parse :- json string convert array/object
+        let data = JSON.parse(json)
+        console.log(data)
+
+        for (let user of data) {
+            console.log(user)
+            document.write("id =>", user.id, "<br>", "name =>", user.name, "<br>", "course =>", user.course, "<br>", "email =>", user.email, "<br>", "<br>")
+        }
+
+
+        // object to json
+
+        let object = [
+            {
+                id: 1,
+                name: "swet",
+                course: "Front-end",
+                email: "swet12@gmail"
+            },
+            {
+                id: 2,
+                name: "neer",
+                course: "Back-end",
+                email: "neer23@gmail"
+            },
+            {
+                id: 3,
+                name: "yash",
+                course: "full-stack",
+                email: "yash67@gmail"
+            },
+            {
+                id: 4,
+                name: "jay",
+                course: "mern-stack",
+                email: "jay99@gmail"
+            },
+            {
+                id: 5,
+                name: "neerav",
+                course: "DS",
+                email: "neerav66@gmail"
+            },
+            {
+                id: 6,
+                name: "sanjay",
+                course: "DA",
+                email: "sanjay6@gmail"
+            },
+            {
+                id: 7,
+                name: "man",
+                course: "DS",
+                email: "man90@gmail"
+            },
+            {
+                id: 8,
+                name: "smit",
+                course: "DS",
+                email: "smit55@gmail"
+            },
+            {
+                id: 9,
+                name: "vansh",
+                course: "AI-ML",
+                email: "vansh77@gmail"
+            },
+            {
+                id: 10,
+                name: "devansh",
+                course: "DS",
+                email: "devansh55@gmail"
+            }
+        ]
+
+
+        let obj = JSON.stringify(object)
+        console.log(obj)
+        document.writeln(obj)
+
+
+
+
+
+
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task 5</title>
+</head>
+<body>
+
+    <table border="5" cellpadding="10">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>INDUSTRY</th>
+                <th>CEO-NAME</th>
+                <th>COUNTRY</th>
+                <th>ZIP</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    
+    <script>
+        fetch("https://fake-json-api.mock.beeceptor.com/companies",{
+            method:"GET"
+        })
+        .then((res)=>{
+            return res.json()
+        })
+        .then((res)=>{
+            let data = res.map((user,index)=>{
+                console.log(user)
+                return `
+                 <tr>    
+                            <td>${user.id}</td>
+                            <td>${user.name}</td>
+                            <td>${user.industry}</td>
+                            <td>${user.ceoName}</td>
+                            <td>${user.country}</td>
+                            <td>${user.zip}</td>
+                        </tr>
+                        `
+            })
+            document.querySelector("tbody").innerHTML = data.join("")
+        })        
+    </script>
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Task Manager - Create Task</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    form {
+      max-width: 500px;
+      margin: auto;
+    }
+
+    label {
+      display: block;
+      margin: 8px 0 4px;
+    }
+
+    input,
+    textarea,
+    select,
+    button {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+    }
+
+    .tasks {
+      max-width: 600px;
+      margin: 20px auto;
+    }
+
+    .task {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 5px;
+    }
+
+    .task-actions {
+      display: flex;
+      gap: 5px;
+      margin-top: 5px;
+    }
+
+    .message {
+      text-align: center;
+      margin: 10px 0;
+      font-weight: bold;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <h2 style="text-align:center;">Task Manager</h2>
+  <div class="message" id="message"></div>
+
+  <form id="taskForm">
+    <label>Task Title</label>
+    <input type="text" id="title" required>
+
+    <label>Description</label>
+    <textarea id="description" required></textarea>
+
+    <label>Due Date</label>
+    <input type="date" id="dueDate" required>
+
+    <label>Priority</label>
+    <select id="priority" required>
+      <option value="">Select</option>
+      <option>High</option>
+      <option>Medium</option>
+      <option>Low</option>
+    </select>
+
+    <label>Status</label>
+    <select id="status" required>
+      <option value="">Select</option>
+      <option>To Do</option>
+      <option>In Progress</option>
+      <option>Done</option>
+    </select>
+
+    <button type="submit">Save Task</button>
+  </form>
+    
+  <div class="tasks" id="taskList"></div>
+
+  <p style="text-align:center;">
+    <a href="view.html">View Submissions</a>
+  </p>
+
+  <script type="module">
+    import { setItem, getItem } from "./task.js";
+
+    class CustomerFormHandler {
+      constructor() {
+        this.tasks = getItem("tasks") || [];
+        this.form = document.getElementById("taskForm");
+        this.list = document.getElementById("taskList");
+        this.message = document.getElementById("message");
+        this.editId = null;
+
+        this.form.addEventListener("submit", e => this.handleSubmit(e));
+        this.form.querySelectorAll("input, textarea, select").forEach(el => {
+          el.addEventListener("blur", () => this.validateForm());
+        });
+
+        this.render();
+      }
+
+      showMessage(msg, color = "green") {
+        this.message.textContent = msg;
+        this.message.style.color = color;
+        setTimeout(() => this.message.textContent = "", 2000);
+      }
+
+      validateForm() {
+        const title = document.getElementById("title").value.trim();
+        if (title.length < 10) {
+          this.showMessage("Title must be at least 10 characters", "red");
+          return false;
+        }
+        return true;
+      }
+
+      handleSubmit(e) {
+        e.preventDefault();
+        if (!this.validateForm()) return;
+
+        const task = {
+          id: this.editId || Date.now(),
+          title: document.getElementById("title").value.trim(),
+          desc: document.getElementById("description").value.trim(),
+          due: document.getElementById("dueDate").value,
+          priority: document.getElementById("priority").value,
+          status: document.getElementById("status").value
+        };
+
+        if (this.editId) {
+          this.tasks = this.tasks.map(t => t.id === this.editId ? task : t);
+          this.editId = null;
+          this.showMessage("Task Updated!");
+        } else {
+          this.tasks.push(task);
+          this.showMessage("Task Added!");
+        }
+
+        setItem("tasks", this.tasks);
+        this.form.reset();
+        this.render();
+      }
+
+      editTask(id) {
+        const task = this.tasks.find(t => t.id === id);
+        document.getElementById("title").value = task.title;
+        document.getElementById("description").value = task.desc;
+        document.getElementById("dueDate").value = task.due;
+        document.getElementById("priority").value = task.priority;
+        document.getElementById("status").value = task.status;
+        this.editId = id;
+        this.showMessage("Editing Task...", "blue");
+      }
+
+      deleteTask(id) {
+        this.tasks = this.tasks.filter(t => t.id !== id);
+        setItem("tasks", this.tasks);
+        this.render();
+        this.showMessage("Task Deleted!", "red");
+      }
+
+      render() {
+        this.list.innerHTML = "";
+        if (this.tasks.length === 0) {
+          this.list.innerHTML = "<p style='text-align:center;'>No tasks yet.</p>";
+          return;
+        }
+        this.tasks.forEach(t => {
+          const div = document.createElement("div");
+          div.className = "task";
+          div.innerHTML = `
+            <strong>${t.title}</strong><br>
+            ${t.desc}<br>
+            <small>Due: ${t.due} | Priority: ${t.priority} | Status: ${t.status}</small>
+            <div class="task-actions">
+              <button onclick="handler.editTask(${t.id})">Edit</button>
+              <button onclick="handler.deleteTask(${t.id})">Delete</button>
+            </div>
+          `;
+          this.list.appendChild(div);
+        });
+      }
+    }
+
+    window.handler = new CustomerFormHandler();
+  </script>
+</body>
+
+</html>

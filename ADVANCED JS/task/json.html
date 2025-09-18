@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- API :- Application prago interface  -->
+
+    <!-- json :- Javscript object notation 
+        1) json :- lightwight base (easy read)
+        2) json are resuse 
+        3) json :- live data 
+        
+        4) Json :- javscript use not 
+
+
+    -->
+    <!-- json :- `[
+        {
+            "id":1,
+            "name" : "user",
+            "course" : "front-end"
+        }
+    ]`
+
+    ob :- [
+        {
+            id : 1,
+            sname : "user",
+            coure : "back-end"
+        }
+    ] -->
+
+    <script>
+
+
+        // json string
+        let json = `[
+            {
+                "id" : 1,
+                "name" : "user",
+                "course" : "Front-end"
+            },
+            {
+                "id" : 2,
+                "name" : "user1",
+                "course" : "Back-end"    
+            }
+        ]`
+
+        console.log(json)
+
+        // parse :- json string convert array/object
+        let objdata = JSON.parse(json)
+        console.log(objdata)
+
+        for (let user of objdata) {
+            // console.log(user)
+            console.log("id :", user.id, " name : ", user.name, "course : ", user.course)
+            document.write(`<h1>id : ${user.id} name : ${user.name} course : ${user.course}</h1>`)
+        }
+
+        // object =>  json string
+
+        let obda = [
+            {
+                id: 1,
+                name: "het",
+                course: "Front-end"
+            },
+              {
+                id: 2,
+                name: "vraj",
+                course: "back-end"
+            }
+        ]
+
+        console.log(obda)
+
+        let jsondata = JSON.stringify(obda)
+        console.log(jsondata)
+
+
+    </script>
+
+</body>
+
+</html>

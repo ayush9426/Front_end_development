@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
+</head>
+<body>
+    
+    <script>
+        // get data method
+        const getdata = async()=>{
+            const res = await axios.get("https://68c2fad9f9928dbf33f05ea0.mockapi.io/products")
+            console.log(res.data)
+            for(let products of res.data){
+                console.log(products)
+            }
+        }
+        getdata()
+
+
+        // to add data method
+        let product = {
+            name :"cardborad",
+            material :"steel",
+            contact:"1234561234",
+            price:"200.00"
+        }
+
+        const putdata =async()=>{
+            const res = await axios.post("https://68c2fad9f9928dbf33f05ea0.mockapi.io/products",product)
+            console.log(res.data)
+        }
+        // putdata()
+        //  note: call putdata when we add data in api if this function is open then automatically added data
+        
+
+
+        //remove data method
+         
+        const removedata=async()=>{
+            const res = await axios.delete("https://68c2fad9f9928dbf33f05ea0.mockapi.io/products/2)")
+            console.log(res.data)
+        }
+        removedata()
+
+        let product1 = {
+            id:5,
+            name:"ayush",
+            contact:"1727356789",
+            shopname:"ahmedabad-market"
+        }
+
+        const updatedata=async()=>{
+            const res = await axios.put(`https://68c2fad9f9928dbf33f05ea0.mockapi.io/products/${product1.id}`,product1)
+            console.log(res.data)
+        }
+
+        updatedat()
+
+
+
+
+    </script>
+
+
+
+</body>
+</html>
